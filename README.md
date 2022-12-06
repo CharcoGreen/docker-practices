@@ -1,4 +1,3 @@
 # Docker Practices
 
-This repo contain exercices with docker and OCI concepts
-
+This repo contain exercises with docker and OCI concepts
