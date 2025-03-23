@@ -17,9 +17,10 @@ docker build -t workshop:latest .
 
 1. Deploy one by one and explain
 2. Deploy pod
-3. Deploy deployment
-4. Delete replicasets
-5. Logs
-6. Change configMap
-7. Manual HP
-8. Auto HPA.
+3. Ingress Controller
+4. Deploy deployment
+5. Delete replicasets
+6. Logs
+7. Change configMap
+8. Manual HP
+9. Auto HPA.
