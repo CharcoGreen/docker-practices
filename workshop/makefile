@@ -1,6 +1,6 @@
 REPOSITORY="flaco0"
 IMAGE_NAME="workshop"
-TAG="latest"
+TAG="v2"
 MY_ENV_VARIABLE="HOLA ZARAGOZA Tech!!!"
 # Image URL Ttech
 # MY_ENV_IMAGE="https://aicongress.barcelona/wp-content/uploads/2024/08/telefonicatech-web-332x214-1.jpg"
@@ -21,12 +21,15 @@ run:
 	--name $(IMAGE_NAME) \
 	-p 8080:80 \
 	-e MY_ENV_VARIABLE=$(MY_ENV_VARIABLE) \
-	-e MY_ENV_IMAGE=$(MY_ENV_IMAGE) $(IMAGE_NAME):$(TAG)
+	-e MY_ENV_IMAGE=$(MY_ENV_IMAGE) \
+	$(REPOSITORY)/$(IMAGE_NAME):$(TAG)
 
 build:
-	docker build -t $(REPOSITORY)/$(IMAGE_NAME):$(TAG) .
+	docker build -t $(REPOSITORY)/$(IMAGE_NAME):$(TAG) . && \
+	docker tag $(REPOSITORY)/$(IMAGE_NAME):$(TAG) $(REPOSITORY)/$(IMAGE_NAME):latest
 
 push:
-	docker push $(REPOSITORY)/$(IMAGE_NAME):$(TAG)
+	docker push $(REPOSITORY)/$(IMAGE_NAME):$(TAG) && \
+	docker push $(REPOSITORY)/$(IMAGE_NAME):latest
 
 restart: stop rm build run

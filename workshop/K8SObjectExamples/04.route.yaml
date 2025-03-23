@@ -1,0 +1,15 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: route-workshop
+  namespace: workshop-n15
+spec:
+  host: hello-workshop-n15.apps.cgdev.cloudgarden.telefonica.com
+  to:
+    kind: Service
+    name: service-workshop
+    weight: 100
+  port:
+    targetPort: 80
+  tls:
+    termination: edge
