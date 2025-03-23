@@ -21,4 +21,5 @@ docker build -t workshop:latest .
 4. Delete replicasets
 5. Logs
 6. Change configMap
-7. Scaling
+7. Manual HP
+8. Auto HPA.
