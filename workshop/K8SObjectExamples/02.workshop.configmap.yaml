@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: workshop
+  namespace: workshop-n15
+data:
+  MY_ENV_VARIABLE: "HOLA ZARAGOZA TELEFONICA TECH!!!!"
+  MY_ENV_IMAGE: "https://external-preview.redd.it/1fvR8lLDYBdhAXTBwC71loBKiNiLusnFkgdDmi-PuxU.jpg?auto=webp&s=9f5b736af2b1f8ffeaf909103f7039030ca40096"

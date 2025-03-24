@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  deploy-workshop
+  namespace: workshop-n15
+  labels:
+    app:  workshop
+spec:
+  selector:
+    matchLabels:
+      app: workshop
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  workshop
+    spec:
+      serviceAccountName: serviceaccount-workshop
+      containers:
+      - name:  workshop
+        image:  flaco0/workshop:v1
+        resources:
+          requests:
+            cpu: 1m
+            memory: 100Mi
+          limits:
+            cpu: 1m
+            memory: 100Mi
+        livenessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:                 
+            port: 80
+          initialDelaySeconds: 5
+          timeoutSeconds: 2
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+        env:
+        - name: MY_ENV_VARIABLE
+          valueFrom:
+            configMapKeyRef:
+              name: workshop
+              key: MY_ENV_VARIABLE
+        - name: MY_ENV_IMAGE
+          valueFrom:
+            configMapKeyRef:
+              name: workshop
+              key: MY_ENV_IMAGE
+
+
+           
+              
